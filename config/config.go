@@ -6,17 +6,22 @@ import (
 	"os"
 )
 
+const CONFIG_PATH = "config/config.yml"
+
 var (
 	Config *config.Config
 )
 
-func LoadCofig(path string) error {
+func LoadCofig(path ...string) error {
 	mode := os.Getenv("MODE")
 	if mode == "" {
 		mode = "debug"
 	}
-
-	cfg, err := config.ParseYamlFile(path)
+	filePath := CONFIG_PATH
+	if len(path) > 0 {
+		filePath = path[0]
+	}
+	cfg, err := config.ParseYamlFile(filePath)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "parse config from %s failed: %s", path, err)
 		return err
