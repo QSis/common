@@ -6,9 +6,16 @@ import (
 	"time"
 )
 
-var Client *redis.Client
+var (
+	Client    *redis.Client
+	RedisConf *config.Config
+)
 
-func InitRedisWithConfig(cfg *config.Config) {
+func InitRedisWithConfig() {
+	cfg := RedisConf
+	if cfg == nil {
+		cfg, _ := config.Config.Get("redis")
+	}
 	Client = redis.NewClient(&redis.Options{
 		Addr:     cfg.UString("addr"),
 		Password: cfg.UString("auth", ""),

@@ -26,7 +26,10 @@ type MyDB struct {
 	*gorm.DB
 }
 
-var DB MyDB
+var (
+	DB     MyDB
+	DBConf *config.Config
+)
 
 type Logger struct {
 }
@@ -34,19 +37,12 @@ type Logger struct {
 func (logger Logger) Print(v ...interface{}) {
 	seelog.Trace(gorm.LogFormatter(v...)...)
 }
-func InitDB() {
-	db, err := gorm.Open("mysql", MysqlConnection)
-	if err != nil {
-		panic(err)
-	}
-	db.SingularTable(DBSingularTable)
-	db.DB().SetMaxIdleConns(DBMaxIdleConnection)
-	db.DB().SetMaxOpenConns(DBMaxOpenConnection)
-	db.SetLogger(Logger{})
-	DB = MyDB{db.Debug()}
-}
 
-func InitDBWithConfig(cfg *config.Config) error {
+func InitDBWithConfig() error {
+	cfg := DBConf
+	if cfg == nil {
+		cfg, _ := config.Config.Get("database")
+	}
 	dataSourceName := fmt.Sprintf(
 		"%s:%s@%s(%s)/%s?%s",
 		cfg.UString("username"),
