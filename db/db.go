@@ -42,7 +42,7 @@ func (logger Logger) Print(v ...interface{}) {
 func InitDBWithConfig() error {
 	cfg := DBConf
 	if cfg == nil {
-		cfg, _ := conf.Config.Get("database")
+		cfg, _ = conf.Config.Get("database")
 	}
 	dataSourceName := fmt.Sprintf(
 		"%s:%s@%s(%s)/%s?%s",
