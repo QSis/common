@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/QSis/common/config"
+	conf "github.com/QSis/common/config"
 	"github.com/QSis/common/obj"
 	"github.com/cihub/seelog"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	"github.com/olebedev/config"
 )
 
 const (
@@ -41,7 +42,7 @@ func (logger Logger) Print(v ...interface{}) {
 func InitDBWithConfig() error {
 	cfg := DBConf
 	if cfg == nil {
-		cfg, _ := config.Config.Get("database")
+		cfg, _ := conf.Config.Get("database")
 	}
 	dataSourceName := fmt.Sprintf(
 		"%s:%s@%s(%s)/%s?%s",
