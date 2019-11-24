@@ -7,7 +7,6 @@ import (
 	"github.com/cihub/seelog"
 	"github.com/remrain/weakjson"
 	"reflect"
-	"regexp"
 	"strconv"
 	"strings"
 	"time"

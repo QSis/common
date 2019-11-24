@@ -11,7 +11,7 @@ func ReturnIfErrNotNil(err) {
 	}
 }
 
-func LogIfErrNotNil(err, msg ...string) {
+func LogIfErrNotNil(err error, msg ...string) {
 	if err != nil {
 		msgs := []string{err.Error()}
 		msgs = append(msgs, msg...)
