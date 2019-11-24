@@ -3,8 +3,6 @@ package server
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
-	"reflect"
 	"regexp"
 	"time"
 
@@ -107,13 +105,11 @@ func (ctx *Context) JsonError(err error) {
 
 func (ctx *Context) JsonFailure(ret ...interface{}) {
 	h := gin.H{
-		"trace": ctx.traceInfo(),
-		"status": gin.H{
-			"code": "ClientError",
-		},
+		"trace": ctx.TraceInfo(),
+		"code":  400,
 	}
 	if len(ret) > 0 {
-		h["status"]["msg"] = ret[0]
+		h["msg"] = ret[0]
 	}
 	ctx.JsonOutput(h)
 }

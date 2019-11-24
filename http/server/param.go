@@ -186,7 +186,7 @@ func (ctx *Context) ParamKey(keys ...interface{}) map[string]interface{} {
 			user := ctx.GetUser()
 			if user != nil {
 				User := map[string]interface{}{
-					"updated_by": user.Account,
+					"updated_by": user.Name,
 				}
 				obj.Copy(key, &User)
 

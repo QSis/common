@@ -2,6 +2,7 @@ package redis
 
 import (
 	"github.com/QSis/common/config"
+	conf "github.com/QSis/common/config"
 	"gopkg.in/redis.v5"
 	"time"
 )
@@ -14,7 +15,7 @@ var (
 func InitRedisWithConfig() {
 	cfg := RedisConf
 	if cfg == nil {
-		cfg, _ := config.Config.Get("redis")
+		cfg, _ = conf.Config.Get("redis")
 	}
 	Client = redis.NewClient(&redis.Options{
 		Addr:     cfg.UString("addr"),
