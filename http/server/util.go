@@ -45,7 +45,7 @@ func (ctx *Context) notFound() {
 }
 
 func (ctx *Context) ShowPanicMsg(msg interface{}) {
-	ctx.Failure(msg)
+	ctx.JsonFailure(msg)
 }
 
 func (ctx *Context) JsonOutput(data interface{}, code ...int) {
@@ -107,11 +107,13 @@ func (ctx *Context) JsonError(err error) {
 
 func (ctx *Context) JsonFailure(ret ...interface{}) {
 	h := gin.H{
-		"code": 400,
-		"msg":  "error",
+		"trace": ctx.traceInfo(),
+		"status": gin.H{
+			"code": "ClientError",
+		},
 	}
 	if len(ret) > 0 {
-		h["item"] = ret[0]
+		h["status"]["msg"] = ret[0]
 	}
 	ctx.JsonOutput(h)
 }
