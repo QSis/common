@@ -1,7 +1,7 @@
 package redis
 
 import (
-	"github.com/olebedev/config"
+	"github.com/QSis/common/config"
 	"gopkg.in/redis.v5"
 	"time"
 )

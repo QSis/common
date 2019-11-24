@@ -5,7 +5,7 @@ import (
 	"github.com/cihub/seelog"
 )
 
-func ReturnIfErrNotNil(err) {
+func ReturnIfErrNotNil(err error) {
 	if err != nil {
 		return
 	}
@@ -19,7 +19,7 @@ func LogIfErrNotNil(err error, msg ...string) {
 	}
 }
 
-func ErrToString(err) string {
+func ErrToString(err error) string {
 	if err != nil {
 		return errors.New(err)
 	}

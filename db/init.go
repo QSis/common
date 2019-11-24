@@ -227,9 +227,6 @@ func ScanStruct(out *[]Field, t reflect.Type) {
 		if gormTag == "-" {
 			continue
 		}
-		if name == "" {
-			name = obj.CamelToUnderScore(f.Name)
-		}
 		field := Field{
 			Name:       name,
 			PrimaryKey: (gormTag == "primary_key"),

@@ -112,3 +112,8 @@ func Retry(desc string, retryTimes int, method func() error) (err error) {
 	seelog.Warnf("%s failed after retry %d times, last error: %s", desc, retryTimes, err)
 	return err
 }
+
+func ImplodeRepeatString(str string, delimiter string, count int) string {
+	repeatArray := ArrayRepeatString(str, count)
+	return strings.Join(repeatArray, delimiter)
+}

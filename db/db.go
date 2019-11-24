@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/QSis/common/config"
 	"github.com/QSis/common/obj"
 	"github.com/cihub/seelog"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
-	"github.com/olebedev/config"
 )
 
 const (
