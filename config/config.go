@@ -12,7 +12,7 @@ var (
 	Config *config.Config
 )
 
-func LoadCofig(path ...string) error {
+func LoadConfig(path ...string) error {
 	mode := os.Getenv("MODE")
 	if mode == "" {
 		mode = "debug"
