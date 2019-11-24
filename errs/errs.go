@@ -21,7 +21,14 @@ func LogIfErrNotNil(err error, msg ...string) {
 
 func ErrToString(err error) string {
 	if err != nil {
-		return errors.New(err)
+		return err.Error()
 	}
 	return ""
+}
+
+func StringToErr(msg string) error {
+	if msg != "" {
+		return errors.New(msg)
+	}
+	return nil
 }

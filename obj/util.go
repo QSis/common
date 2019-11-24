@@ -117,3 +117,11 @@ func ImplodeRepeatString(str string, delimiter string, count int) string {
 	repeatArray := ArrayRepeatString(str, count)
 	return strings.Join(repeatArray, delimiter)
 }
+
+func ArrayRepeatString(str string, count int) []string {
+	ret := []string{}
+	for i := 0; i < count; i++ {
+		ret = append(ret, str)
+	}
+	return ret
+}
